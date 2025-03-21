@@ -354,6 +354,7 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                     child: Row(
                       children: [
                         RawAutocomplete<String>(
+                          optionsViewOpenDirection: OptionsViewOpenDirection.up,
                           textEditingController:
                               _chipsAutocompleteController.textController,
                           focusNode: _focusNode,
@@ -376,8 +377,6 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                               if (widget.addChipOnSelection) {
                                 if (widget.useDefaultOnChipAdded) {
                                   _defaultOnChipAdded(selection);
-                                  _focusNode.unfocus();
-                                  _focusNode.requestFocus();
                                 }
                                 widget.onChipAdded?.call(selection);
                                 _chipsAutocompleteController.clearText();
