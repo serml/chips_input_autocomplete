@@ -377,6 +377,7 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                                 if (widget.useDefaultOnChipAdded) {
                                   _defaultOnChipAdded(selection);
                                   _focusNode.unfocus();
+                                  _focusNode.requestFocus();
                                 }
                                 widget.onChipAdded?.call(selection);
                                 _chipsAutocompleteController.clearText();
