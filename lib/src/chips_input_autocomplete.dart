@@ -60,8 +60,6 @@ class ChipsInputAutocomplete extends StatefulWidget {
     this.cursorHeight,
     this.cursorRadius,
     this.cursorColor,
-    this.width = double.infinity,
-    this.height = 48.0,
     this.keyboardType = TextInputType.text,
     this.decorationTextField = const InputDecoration(
       border: InputBorder.none,
@@ -94,12 +92,6 @@ class ChipsInputAutocomplete extends StatefulWidget {
 
   /// Decoration for the main widget container.
   final BoxDecoration widgetContainerDecoration;
-
-  // Width of the widget.
-  final double width;
-
-  // Height of the widget.
-  final double height;
 
   /// Spacing between the chips.
   /// Defaults to 5.0.
@@ -358,9 +350,7 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                       }
                     }
                   },
-                  child: SizedBox(
-                    width: widget.width,
-                    height: widget.height,
+                  child: FittedBox(
                     child: Row(
                       children: [
                         RawAutocomplete<String>(
