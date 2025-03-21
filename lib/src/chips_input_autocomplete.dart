@@ -354,7 +354,8 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                     child: Row(
                       children: [
                         RawAutocomplete<String>(
-                          optionsViewOpenDirection: OptionsViewOpenDirection.up,
+                          optionsViewOpenDirection:
+                              OptionsViewOpenDirection.down,
                           textEditingController:
                               _chipsAutocompleteController.textController,
                           focusNode: _focusNode,
