@@ -477,11 +477,12 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                                 elevation: 4.0,
                                 child: ConstrainedBox(
                                   constraints: BoxConstraints(
-                                      maxHeight: 200.0,
-                                      maxWidth: widget.optionsMaxWidth ??
-                                          widget.decorationTextField.constraints
-                                              ?.maxWidth ??
-                                          _kTextFieldWidth),
+                                    maxHeight: 200.0,
+                                    maxWidth: widget.optionsMaxWidth ??
+                                        widget.decorationTextField.constraints
+                                            ?.maxWidth ??
+                                        _kTextFieldWidth,
+                                  ),
                                   child: ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
@@ -490,34 +491,44 @@ class ChipsInputAutocompleteState extends State<ChipsInputAutocomplete> {
                                         (BuildContext context, int index) {
                                       final String option =
                                           options.elementAt(index);
-                                      return InkWell(
-                                        onTap: () {
-                                          onSelected(option);
-                                        },
-                                        child: Builder(
-                                          builder: (BuildContext context) {
-                                            final bool highlight =
-                                                AutocompleteHighlightedOption
-                                                        .of(context) ==
-                                                    index;
-                                            // ERROR: [ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: 'package:flutter/src/rendering/object.dart': Failed assertion: line 3347 pos 14: 'renderer.parent != null': is not true.
-                                            // if (highlight) {
-                                            //   SchedulerBinding.instance
-                                            //       .addPostFrameCallback(
-                                            //           (Duration timeStamp) {
-                                            //     Scrollable.ensureVisible(context,
-                                            //         alignment: 0.5);
-                                            //   });
-                                            // }
-                                            return Container(
-                                              color: highlight
-                                                  ? Theme.of(context).focusColor
-                                                  : null,
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              child: Text(option),
-                                            );
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0, vertical: 4.0),
+                                        child: InkWell(
+                                          onTap: () {
+                                            onSelected(option);
                                           },
+                                          child: Builder(
+                                            builder: (BuildContext context) {
+                                              final bool highlight =
+                                                  AutocompleteHighlightedOption
+                                                          .of(context) ==
+                                                      index;
+                                              return Container(
+                                                decoration: BoxDecoration(
+                                                  color: highlight
+                                                      ? Theme.of(context)
+                                                          .focusColor
+                                                      : Colors.grey[200],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    option,
+                                                    style: TextStyle(
+                                                      color: highlight
+                                                          ? Colors.white
+                                                          : Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         ),
                                       );
                                     },
